@@ -37,7 +37,7 @@ app.post("/saveData", (req, res) => {
 
 function writeN170(participantId, isAuxConnected, eegResult, n170Readings) {
   const eegFile =
-    "data/" +
+    "./data/" +
     participantId +
     "_n170_eeg_" +
     moment(new Date()).format("YYYYMMDDHHmmss") +
@@ -73,7 +73,7 @@ function writeN170(participantId, isAuxConnected, eegResult, n170Readings) {
   });
 
   const n170File =
-    "data/" +
+    "./data/" +
     participantId +
     "_n170_readings_" +
     moment(new Date()).format("YYYYMMDDHHmmss") +
@@ -97,7 +97,7 @@ function writeN170(participantId, isAuxConnected, eegResult, n170Readings) {
 
 function writeXAB(participantId, isAuxConnected, eegResult, xabReadings) {
   const eegFile =
-    "data/" +
+    "./data/" +
     participantId +
     "_xab_eeg_" +
     moment(new Date()).format("YYYYMMDDHHmmss") +
@@ -127,7 +127,7 @@ function writeXAB(participantId, isAuxConnected, eegResult, xabReadings) {
   });
 
   const xabFile =
-    "data/" +
+    "./data/" +
     participantId +
     "_xab_readings_" +
     moment(new Date()).format("YYYYMMDDHHmmss") +
@@ -156,7 +156,7 @@ function writeGeneral(
   experimentName
 ) {
   const generalFile =
-    "data/" +
+    "./data/" +
     participantId +
     "_" +
     experimentName +
