@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const fs = require("fs");
 const moment = require("moment");
+const path = require("path");
 
 const app = express();
 const port = 8080;
@@ -36,12 +37,14 @@ app.post("/saveData", (req, res) => {
 });
 
 function writeN170(participantId, isAuxConnected, eegResult, n170Readings) {
-  const eegFile =
-    "./data/" +
-    participantId +
-    "_n170_eeg_" +
-    moment(new Date()).format("YYYYMMDDHHmmss") +
-    ".csv";
+  const eegFile = path.join(
+    __dirname,
+    "/data/" +
+      participantId +
+      "_n170_eeg_" +
+      moment(new Date()).format("YYYYMMDDHHmmss") +
+      ".csv"
+  );
 
   let header, records;
   if (isAuxConnected) {
@@ -72,12 +75,15 @@ function writeN170(participantId, isAuxConnected, eegResult, n170Readings) {
     }
   });
 
-  const n170File =
-    "./data/" +
-    participantId +
-    "_n170_readings_" +
-    moment(new Date()).format("YYYYMMDDHHmmss") +
-    ".csv";
+  const n170File = path.join(
+    __dirname,
+    "/data/" +
+      participantId +
+      "_n170_readings_" +
+      moment(new Date()).format("YYYYMMDDHHmmss") +
+      ".csv"
+  );
+
   const n170Header = [
     "timestamp, participant_id, type, gender, face_orientation, eye_orientation, smile, teeth",
   ];
@@ -96,13 +102,14 @@ function writeN170(participantId, isAuxConnected, eegResult, n170Readings) {
 }
 
 function writeXAB(participantId, isAuxConnected, eegResult, xabReadings) {
-  const eegFile =
-    "./data/" +
-    participantId +
-    "_xab_eeg_" +
-    moment(new Date()).format("YYYYMMDDHHmmss") +
-    ".csv";
-
+  const eegFile = path.join(
+    __dirname,
+    "/data/" +
+      participantId +
+      "_xab_eeg_" +
+      moment(new Date()).format("YYYYMMDDHHmmss") +
+      ".csv"
+  );
   let header, records;
   if (isAuxConnected) {
     header = ["Timestamp, Index, ch_0, ch_1, ch_2, ch_3, ch_4, participant_id"];
@@ -126,12 +133,14 @@ function writeXAB(participantId, isAuxConnected, eegResult, xabReadings) {
     }
   });
 
-  const xabFile =
-    "./data/" +
-    participantId +
-    "_xab_readings_" +
-    moment(new Date()).format("YYYYMMDDHHmmss") +
-    ".csv";
+  const xabFile = path.join(
+    __dirname,
+    "/data/" +
+      participantId +
+      "_xab_readings_" +
+      moment(new Date()).format("YYYYMMDDHHmmss") +
+      ".csv"
+  );
   const xabHeader = [
     "stimuli_timestamp, start_timestamp, timestamp, selection, mode, correctness, participant_id, left_gender, left_face_orientation, left_eye_orientation, left_smile, left_teeth, right_gender, right_face_orientation, right_eye_orientation, right_smile, right_teeth",
   ];
@@ -155,15 +164,16 @@ function writeGeneral(
   eegResult,
   experimentName
 ) {
-  const generalFile =
-    "./data/" +
-    participantId +
-    "_" +
-    experimentName +
-    "_eeg_" +
-    moment(new Date()).format("YYYYMMDDHHmmss") +
-    ".csv";
-
+  const generalFile = path.join(
+    __dirname,
+    "/data/" +
+      participantId +
+      "_" +
+      experimentName +
+      "_eeg_" +
+      moment(new Date()).format("YYYYMMDDHHmmss") +
+      ".csv"
+  );
   let header, records;
   if (isAuxConnected) {
     header = ["Timestamp, Index, ch_0, ch_1, ch_2, ch_3, ch_4, participant_id"];
